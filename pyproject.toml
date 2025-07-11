@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "siterecipesapp"
+version = "0.1.0"
+description = ""
+authors = ["Domitori <dmlegasy@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+django = "^5.2.4"
+pillow = "^11.3.0"
+dotenv = "^0.9.9"
+gunicorn = "^23.0.0"
+psycopg2-binary = "^2.9.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
