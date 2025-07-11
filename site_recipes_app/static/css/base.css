@@ -1,0 +1,222 @@
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background-color: khaki;
+}
+
+
+h1, h2, h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+
+.container {
+    width: 80%;
+    overflow: hidden;
+    margin: 20px auto;
+
+}
+
+
+nav {
+    background: #2c3e50;
+    color: white;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.main-content {
+    padding: 20px;
+    margin-top: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-around;
+    border-radius: 8px;
+    align-content: center;
+}
+
+
+img {
+    height: 400px;
+    width: 250px;
+}
+
+.cont {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    white-space: pre-line;
+    align-items: center;
+
+}
+
+
+button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #2980b9;
+}
+
+
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px;
+
+    width: 100%;
+    bottom: 0;
+}
+
+
+a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: bold;
+}
+
+
+a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+
+a:active {
+    color: #1f618d;
+}
+
+
+a:visited {
+    color: #9b59b6;
+}
+
+
+form {
+    /*max-width: 1200px;*/
+    width: 78%;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    text-align: center;
+}
+
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+
+input[type="submit"] {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+/
+}
+
+
+input[type="submit"]:hover {
+    background: #2980b9;
+}
+
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+
+ul.inline-list {
+    list-style: none;
+    padding: 12px;
+    margin: 12px;
+    display: flex;
+    gap: 0.5em;
+}
+
+ul.inline-list li {
+    display: inline;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+ul.inline-list li::after {
+    content: "|";
+    margin-left: 0.5em;
+    color: #aaa;
+}
+
+ul.inline-list li:last-child::after {
+    content: "";
+}

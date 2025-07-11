@@ -1,0 +1,50 @@
+{% extends "site_recipes_app/base.html" %}
+
+{% block title %}
+    Главная
+{% endblock %}
+
+{% block body %}
+    <nav>
+        <ul>
+            <li>
+                <a href="{% url 'site_recipes_app:recipes' %}">Посмотреть список рецептов</a>
+            </li>
+            {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'site_recipes_app:create' %}">Добавить новый рецепт</a>
+                </li>
+                <li>
+                    <a href="{% url 'auth_user_app:logout' %}">Выйти</a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{% url 'auth_user_app:register' %}">Зарегистрироваться</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    <h1>Главная</h1>
+    <h2>Добро пожаловать на сайт рецептов</h2>
+    <div class="container">
+        {% if random_recipes %}
+            {% for random_recipe in random_recipes %}
+                <div class="main-content">
+                    <div class="cont">
+                        <h2><a href="{% url 'site_recipes_app:detail' pk=random_recipe.pk %}">{{ random_recipe.title }}</a>
+                        </h2>
+                        {% if random_recipe.image %}
+                            <img src="{{ random_recipe.image.url }}" alt="{{ random_recipe.image.name }}">
+                        {% endif %}
+                    </div>
+                    <div class="cont">
+                        <h3>Описание</h3>
+                        <p>{{ random_recipe.description }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h2>Рецептов пока что не добавили</h2>
+        {% endif %}
+    </div>
+{% endblock %}

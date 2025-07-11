@@ -1,0 +1,48 @@
+{% extends "site_recipes_app/base.html" %}
+
+{% block title %}
+    Список рецептов
+{% endblock %}
+
+{% block body %}
+    <nav>
+        <ul>
+            <li>
+                <a href="{% url 'site_recipes_app:main' %}">Вернуться на главную</a>
+            </li>
+            {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'site_recipes_app:create' %}">Добавить новый рецепт</a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{% url 'auth_user_app:register' %}">Зарегистрироваться</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Список рецептов</h1>
+        {% if recipes %}
+            {% for recipe in recipes %}
+                <div class="main-content">
+                    <div class="cont">
+                        <h2><a href="{% url 'site_recipes_app:detail' pk=recipe.pk %}">{{ recipe.title }}</a></h2>
+                        {% if recipe.image %}
+                            <img src="{{ recipe.image.url }}" alt={{ recipe.image.name }}>
+                        {% endif %}
+                    </div>
+                    <div class="cont">
+                        <h3>Описание рецепта</h3>
+                        <p>{{ recipe.description }}</p>
+                        <br>
+                        <h3>Ингредиенты</h3>
+                        <p>{{ recipe.ingredients }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h2>Рецептов пока что нет</h2>
+        {% endif %}
+    </div>
+{% endblock %}
