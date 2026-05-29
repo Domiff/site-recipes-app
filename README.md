@@ -102,12 +102,15 @@ Template URL names: `site_recipes:*`, `auth_user:*`.
 
 ## Docker
 
+Copy `.env.template` to `.env` and set `SECRET_KEY` and PostgreSQL credentials (defaults in `docker-compose.yml` work for local dev).
+
 ```bash
-docker build -t bestrecipes .
-docker run -p 8000:8000 --env-file .env bestrecipes
+docker compose up --build
 ```
 
-Run migrations on the host or as a separate CI step before starting the container.
+App: http://127.0.0.1:8000/main/
+
+Migrations run automatically when the `web` container starts.
 
 ## App rename note
 
