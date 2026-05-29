@@ -1,0 +1,64 @@
+{% extends "site_recipes/base.html" %}
+
+{% block title %}
+    {{ recipe.title }}
+    {% load static %}
+{% endblock %}
+
+{% block body %}
+    <nav>
+        <ul>
+            <li>
+                <a href="{% url 'site_recipes:recipes' %}">Список рецептов</a>
+            </li>
+            {% if user.is_authenticated %}
+                {% if user == recipe.author %}
+                    <li>
+                        <a href="{% url 'site_recipes:update' pk=recipe.pk %}">Обновить рецепт</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'site_recipes:delete' pk=recipe.pk %}">Удалить рецепт</a>
+                    </li>
+                {% endif %}
+            {% else %}
+                <li>
+                    <a href="{% url 'auth_user:register' %}">Зарегистрироваться</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="main-content">
+            <div class="cont">
+                <h1>{{ recipe.title }}</h1>
+                {% if recipe.image %}
+                    <img src="{{ recipe.image.url }}" alt={{ recipe.image.name }}>
+                {% endif %}
+            </div>
+            <div class="cont">
+                <h3>Описание блюда</h3>
+                <p>{{ recipe.description }}</p>
+                <h3>Шаги приготовления блюда</h3>
+                <p>{{ recipe.steps }}</p>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="cont">
+                <h3>Ингредиенты для блюда</h3>
+                <p>{{ recipe.ingredients }}</p>
+            </div>
+            <div class="cont">
+                <h3>Время приготовления блюда</h3>
+                <p>{{ recipe.time_cooking }}</p>
+                <h3>Категория</h3>
+                <ul class="inline-list">
+                    {% for category in recipe.category.all %}
+                        <li>{{ category }}</li>
+                    {% endfor %}
+                </ul>
+                <h3>Автор рецепта</h3>
+                <p>{{ recipe.author }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "site_recipes/base.html" %}
+
+{% block title %}
+    Создать рецепт
+{% endblock %}
+
+{% block body %}
+    <nav>
+        <ul>
+            <li>
+                <a href="{% url 'site_recipes:main' %}">Вернуться на главную</a>
+            </li>
+            <li>
+                <a href="{% url 'site_recipes:recipes' %}">Список рецептов</a>
+            </li>
+        </ul>
+    </nav>
+    <h1>Создание рецепта</h1>
+    <div>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Добавить новый рецепт</button>
+        </form>
+    </div>
+{% endblock %}

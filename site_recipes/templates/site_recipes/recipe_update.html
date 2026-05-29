@@ -1,0 +1,20 @@
+{% extends "site_recipes/base.html" %}
+
+{% block title %}
+    {{ recipe.title }}
+{% endblock %}
+
+{% block body %}
+    <nav>
+        <ul>
+            <li>
+                <a href="{% url 'site_recipes:detail' pk=recipe.pk %}">Вернуться к {{ recipe.title }}</a>
+            </li>
+        </ul>
+    </nav>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Обновить рецепт</button>
+    </form>
+{% endblock %}
