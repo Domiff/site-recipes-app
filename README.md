@@ -14,7 +14,7 @@ BestRecipes is a Django web app for storing, browsing, and editing cooking recip
 - Python 3.13
 - Django 5.2
 - PostgreSQL
-- Poetry
+- [uv](https://docs.astral.sh/uv/)
 - Pillow (images)
 - Gunicorn (production)
 
@@ -29,16 +29,17 @@ site-recipes-app/
 │   └── templates/auth/
 ├── manage.py
 ├── pyproject.toml
+├── uv.lock
 └── .env                  # environment variables (create from .env.template)
 ```
 
 ## Requirements
 
-- Python 3.13+
-- [Poetry](https://python-poetry.org/)
-- PostgreSQL
+- Python 3.12+
+- [uv](https://docs.astral.sh/uv/getting-started/installation/)
+- PostgreSQL (production / Docker; SQLite when `DEBUG=True`)
 
-The database driver (`psycopg2-binary`) is already listed in `pyproject.toml`.
+The database driver (`psycopg`) is listed in `pyproject.toml`.
 
 ## Setup and run
 
@@ -47,7 +48,7 @@ The database driver (`psycopg2-binary`) is already listed in `pyproject.toml`.
 2. Install dependencies:
 
    ```bash
-   poetry install
+   uv sync
    ```
 
 3. Create a PostgreSQL database and copy the environment template:
@@ -71,20 +72,22 @@ The database driver (`psycopg2-binary`) is already listed in `pyproject.toml`.
 4. Apply migrations:
 
    ```bash
-   poetry run python manage.py migrate
+   uv run python manage.py migrate
    ```
 
 5. (Optional) Create a superuser:
 
    ```bash
-   poetry run python manage.py createsuperuser
+   uv run python manage.py createsuperuser
    ```
 
 6. Start the development server:
 
    ```bash
-   poetry run python manage.py runserver
+   uv run python manage.py runserver
    ```
+
+   Or with [just](https://github.com/casey/just): `just install`, `just migrate`, `just run`.
 
    App URL: http://127.0.0.1:8000/main/
 
@@ -102,7 +105,7 @@ Template URL names: `site_recipes:*`, `auth_user:*`.
 
 ## Docker
 
-Copy `.env.template` to `.env` and set `SECRET_KEY` and PostgreSQL credentials (defaults in `docker-compose.yml` work for local dev).
+Copy `.env.template` to `.env` and set `SECRET_KEY`. All services read variables from `.env` (`POSTGRES_HOST=db`, `DEBUG=False` for PostgreSQL in containers).
 
 ```bash
 docker compose up --build
@@ -110,7 +113,9 @@ docker compose up --build
 
 App: http://127.0.0.1:8000/main/
 
-Migrations run automatically when the `web` container starts.
+The image uses a multi-stage build (`builder` with `uv sync` → `runtime`). Migrations run when the `web` container starts.
+
+For local development without Docker, use `DEBUG=True` (SQLite) and `POSTGRES_HOST=localhost` in `.env`.
 
 ## App rename note
 
