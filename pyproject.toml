@@ -15,7 +15,7 @@ dependencies = [
     "pillow>=11.3.0,<12",
     "dotenv>=0.9.9,<0.10",
     "gunicorn>=23.0.0,<24",
-    "psycopg2-binary>=2.9.10,<3",
+    "psycopg>=3.3.4",
 ]
 
 [tool.uv]
