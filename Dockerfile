@@ -5,7 +5,7 @@ ENV POETRY_VERSION=1.8.0 \
     PYTHONUNBUFFERED=1
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends curl && \
+    apt-get install -y --no-install-recommends curl libpq-dev gcc && \
     curl -sSL https://install.python-poetry.org | python3 - && \
     ln -s /root/.local/bin/poetry /usr/local/bin/poetry && \
     apt-get purge -y curl && \
