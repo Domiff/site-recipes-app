@@ -1,8 +1,8 @@
 from django.urls import path
 
 from .views import (
-    RegisterUserView,
     LoginUserView,
+    RegisterUserView,
     logout_view,
 )
 

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView
 
 from .forms import CreateUserForm
@@ -23,5 +23,5 @@ class LoginUserView(LoginView):
 
 def logout_view(request: HttpRequest) -> HttpResponse:
     logout(request)
-    _url = reverse("auth_user:login")
-    return redirect(_url)
+    url = reverse("auth_user:login")
+    return redirect(url)

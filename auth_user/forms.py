@@ -1,7 +1,7 @@
 from django import forms
-from django.forms import EmailField
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.forms import EmailField
 
 
 class CreateUserForm(UserCreationForm):
