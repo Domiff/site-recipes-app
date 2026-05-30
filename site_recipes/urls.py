@@ -1,12 +1,12 @@
 from django.urls import path
 
 from .views import (
-    main_view,
     CreateRecipeView,
-    RecipesListView,
-    DetailRecipeView,
-    UpdateRecipeView,
     DeleteRecipeView,
+    DetailRecipeView,
+    RecipesListView,
+    UpdateRecipeView,
+    main_view,
 )
 
 app_name = "site_recipes"
