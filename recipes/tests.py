@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.urls import reverse
 from faker import Faker
 
-from site_recipes.models import Category, Recipe
+from recipes.models import Category, Recipe
 
 User = get_user_model()
 faker = Faker()
@@ -11,7 +11,7 @@ faker = Faker()
 
 class MainViewTest(TestCase):
     def test_main(self):
-        response = self.client.get(reverse("site_recipes:main"))
+        response = self.client.get(reverse("recipes:main"))
         self.assertEqual(response.status_code, 200)
 
 
@@ -42,15 +42,13 @@ class ListDetailRecipeTest(TestCase):
 
     def test_list(self):
         self.client.force_login(self.user)
-        response = self.client.get(reverse("site_recipes:recipes"))
+        response = self.client.get(reverse("recipes:recipes"))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.recipe.title)
 
     def test_detail(self):
         self.client.force_login(self.user)
-        response = self.client.get(
-            reverse("site_recipes:detail", args=[self.recipe.id])
-        )
+        response = self.client.get(reverse("recipes:detail", args=[self.recipe.id]))
         self.assertEqual(response.status_code, 200)
 
 
@@ -83,7 +81,7 @@ class CreateUpdateRecipeTest(TestCase):
     def test_create(self):
         self.client.force_login(self.user)
         response = self.client.post(
-            reverse("site_recipes:create"),
+            reverse("recipes:create"),
             data=self.create_data,
         )
         self.assertEqual(response.status_code, 302)
@@ -105,7 +103,7 @@ class CreateUpdateRecipeTest(TestCase):
         )
         recipe.category.add(self.category)
         response = self.client.post(
-            reverse("site_recipes:update", args=[recipe.pk]),
+            reverse("recipes:update", args=[recipe.pk]),
             data=self.update_data,
         )
         self.assertEqual(response.status_code, 302)
@@ -131,9 +129,7 @@ class DeleteRecipeTest(TestCase):
 
     def test_delete(self):
         self.client.force_login(self.user)
-        response = self.client.delete(
-            reverse("site_recipes:delete", args=[self.recipe.pk])
-        )
+        response = self.client.delete(reverse("recipes:delete", args=[self.recipe.pk]))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(
             Recipe.objects.count(),

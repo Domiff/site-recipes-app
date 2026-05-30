@@ -39,7 +39,7 @@ select = ["E", "W", "F", "I", "UP", "B", "DJ"]
 ignore = ["E501"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["core", "site_recipes", "auth_user"]
+known-first-party = ["core", "recipes", "auth_user"]
 
 [build-system]
 requires = ["uv_build>=0.11.16,<0.12.0"]

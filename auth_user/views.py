@@ -18,7 +18,7 @@ class RegisterUserView(CreateView):
 
 class LoginUserView(LoginView):
     template_name = "auth/log_in.html"
-    success_url = reverse_lazy("site_recipes:main")
+    success_url = reverse_lazy("recipes:main")
 
 
 def logout_view(request: HttpRequest) -> HttpResponse:

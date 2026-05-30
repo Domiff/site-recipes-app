@@ -1,4 +1,4 @@
-{% extends "site_recipes/base.html" %}
+{% extends "recipes/base.html" %}
 
 {% block title %}
     Список рецептов
@@ -8,11 +8,11 @@
     <nav>
         <ul>
             <li>
-                <a href="{% url 'site_recipes:main' %}">Вернуться на главную</a>
+                <a href="{% url 'recipes:main' %}">Вернуться на главную</a>
             </li>
             {% if user.is_authenticated %}
                 <li>
-                    <a href="{% url 'site_recipes:create' %}">Добавить новый рецепт</a>
+                    <a href="{% url 'recipes:create' %}">Добавить новый рецепт</a>
                 </li>
             {% else %}
                 <li>
@@ -27,7 +27,7 @@
             {% for recipe in recipes %}
                 <div class="main-content">
                     <div class="cont">
-                        <h2><a href="{% url 'site_recipes:detail' pk=recipe.pk %}">{{ recipe.title }}</a></h2>
+                        <h2><a href="{% url 'recipes:detail' pk=recipe.pk %}">{{ recipe.title }}</a></h2>
                         {% if recipe.image %}
                             <img src="{{ recipe.image.url }}" alt={{ recipe.image.name }}>
                         {% endif %}

@@ -17,7 +17,7 @@ from .models import Recipe
 
 
 def main_view(request):
-    template_name = "site_recipes/main.html"
+    template_name = "recipes/main.html"
     queryset = list(Recipe.objects.all())
     if queryset:
         random_recipes = sample(queryset, 5)
@@ -32,14 +32,14 @@ class RecipesListView(ListView):
     model = Recipe
     context_object_name = "recipes"
     queryset = Recipe.objects.all()
-    template_name = "site_recipes/recipes_list.html"
+    template_name = "recipes/recipes_list.html"
 
 
 class CreateRecipeView(LoginRequiredMixin, CreateView):
     model = Recipe
     form_class = RecipeForm
-    template_name = "site_recipes/recipe_create.html"
-    success_url = reverse_lazy("site_recipes:recipes")
+    template_name = "recipes/recipe_create.html"
+    success_url = reverse_lazy("recipes:recipes")
     login_url = reverse_lazy("auth_user:login")
 
     def form_valid(self, form):
@@ -48,7 +48,7 @@ class CreateRecipeView(LoginRequiredMixin, CreateView):
 
 
 class DetailRecipeView(DetailView):
-    template_name = "site_recipes/recipe_detail.html"
+    template_name = "recipes/recipe_detail.html"
     context_object_name = "recipe"
 
     def get_object(self, queryset=None):
@@ -58,8 +58,8 @@ class DetailRecipeView(DetailView):
 class UpdateRecipeView(LoginRequiredMixin, AuthorRequiredMixin, UpdateView):
     model = Recipe
     form_class = RecipeUpdateForm
-    template_name = "site_recipes/recipe_update.html"
-    success_url = reverse_lazy("site_recipes:detail")
+    template_name = "recipes/recipe_update.html"
+    success_url = reverse_lazy("recipes:detail")
     context_object_name = "recipe"
     login_url = reverse_lazy("auth_user:login")
 
@@ -67,10 +67,10 @@ class UpdateRecipeView(LoginRequiredMixin, AuthorRequiredMixin, UpdateView):
         return Recipe.objects.prefetch_related("category").get(pk=self.kwargs["pk"])
 
     def get_success_url(self):
-        return reverse_lazy("site_recipes:detail", kwargs={"pk": self.kwargs["pk"]})
+        return reverse_lazy("recipes:detail", kwargs={"pk": self.kwargs["pk"]})
 
 
 class DeleteRecipeView(LoginRequiredMixin, AuthorRequiredMixin, DeleteView):
     model = Recipe
-    success_url = reverse_lazy("site_recipes:recipes")
+    success_url = reverse_lazy("recipes:recipes")
     login_url = reverse_lazy("auth_user:login")

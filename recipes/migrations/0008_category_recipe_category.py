@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("site_recipes", "0007_alter_recipe_image"),
+        ("recipes", "0007_alter_recipe_image"),
     ]
 
     operations = [
@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
             model_name="recipe",
             name="category",
             field=models.ManyToManyField(
-                to="site_recipes.category", verbose_name="Категория"
+                to="recipes.category", verbose_name="Категория"
             ),
         ),
     ]

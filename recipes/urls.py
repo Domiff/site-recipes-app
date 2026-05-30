@@ -9,7 +9,7 @@ from .views import (
     main_view,
 )
 
-app_name = "site_recipes"
+app_name = "recipes"
 
 urlpatterns = [
     path("", main_view, name="main"),

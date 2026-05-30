@@ -1,4 +1,4 @@
-{% extends "site_recipes/base.html" %}
+{% extends "recipes/base.html" %}
 
 {% block title %}
     {{ recipe.title }}
@@ -8,7 +8,7 @@
     <nav>
         <ul>
             <li>
-                <a href="{% url 'site_recipes:detail' pk=recipe.pk %}">Вернуться к {{ recipe.title }}</a>
+                <a href="{% url 'recipes:detail' pk=recipe.pk %}">Вернуться к {{ recipe.title }}</a>
             </li>
         </ul>
     </nav>
