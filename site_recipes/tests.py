@@ -9,6 +9,12 @@ User = get_user_model()
 faker = Faker()
 
 
+class MainViewTest(TestCase):
+    def test_main(self):
+        response = self.client.get(reverse("site_recipes:main"))
+        self.assertEqual(response.status_code, 200)
+
+
 class ListDetailRecipeTest(TestCase):
     @classmethod
     def setUpTestData(cls):
