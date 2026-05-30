@@ -11,7 +11,7 @@ BestRecipes is a Django web app for storing, browsing, and editing cooking recip
 
 ## Stack
 
-- Python 3.13
+- Python 3.12
 - Django 5.2
 - PostgreSQL
 - [uv](https://docs.astral.sh/uv/)
