@@ -26,3 +26,6 @@ pre-commit:
 
 setup-hooks:
     uv run pre-commit install
+
+test:
+    uv run python manage.py test
