@@ -34,7 +34,6 @@ jobs:
       POSTGRES_PASSWORD: test_pass
       POSTGRES_HOST: localhost
       POSTGRES_PORT: 5432
-      CSRF_TRUSTED_ORIGINS: http://localhost:8080
 
     steps:
       - name: Checkout repository
