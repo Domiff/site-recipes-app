@@ -189,3 +189,4 @@ cython_debug/
 .cursorindexingignore
 
 *.sqlite3
+static/
