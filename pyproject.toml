@@ -13,14 +13,14 @@ classifiers = [
 dependencies = [
     "django>=5.2.4,<6",
     "pillow>=11.3.0,<12",
-    "dotenv>=0.9.9,<0.10",
     "gunicorn>=23.0.0,<24",
     "psycopg>=3.3.4",
-    "faker>=40.19.1",
+    "django-environ>=0.14.0",
 ]
 
 [dependency-groups]
 dev = [
+    "faker>=40.28.1",
     "pre-commit>=4.6.0",
     "ruff>=0.15.15",
 ]
@@ -37,6 +37,9 @@ exclude = ["*/migrations/*"]
 [tool.ruff.lint]
 select = ["E", "W", "F", "I", "UP", "B", "DJ"]
 ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"core/settings/__init__.py" = ["F403"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["core", "recipes", "auth_user"]
