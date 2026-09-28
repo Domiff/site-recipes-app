@@ -4,13 +4,13 @@ install:
     uv sync
 
 run:
-    uv run python manage.py runserver
+    uv run python backend/manage.py runserver
 
 migrate:
-    uv run python manage.py migrate
+    uv run python backend/manage.py migrate
 
 makemigrations:
-    uv run python manage.py makemigrations
+    uv run python backend/manage.py makemigrations
 
 lint:
     uv run ruff check .
@@ -28,4 +28,4 @@ setup-hooks:
     uv run pre-commit install
 
 test:
-    uv run python manage.py test
+    cd backend && uv run python manage.py test

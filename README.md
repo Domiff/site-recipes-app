@@ -22,12 +22,15 @@ BestRecipes is a Django web app for storing, browsing, and editing cooking recip
 
 ```
 site-recipes-app/
-├── core/                 # Django settings (settings, urls, wsgi)
-├── site_recipes/         # recipes, categories, templates
-│   └── templates/site_recipes/
-├── auth_user/            # registration, login, logout
-│   └── templates/auth/
-├── manage.py
+├── backend/
+│   ├── core/             # Django settings (settings, urls, wsgi)
+│   ├── recipes/          # recipes, categories, templates
+│   │   └── templates/recipes/
+│   ├── auth_user/        # registration, login, logout
+│   │   └── templates/auth/
+│   └── manage.py
+├── nginx/
+├── grafana/
 ├── pyproject.toml
 ├── uv.lock
 └── .env                  # environment variables (create from .env.template)
@@ -72,19 +75,19 @@ The database driver (`psycopg`) is listed in `pyproject.toml`.
 4. Apply migrations:
 
    ```bash
-   uv run python manage.py migrate
+   uv run python backend/manage.py migrate
    ```
 
 5. (Optional) Create a superuser:
 
    ```bash
-   uv run python manage.py createsuperuser
+   uv run python backend/manage.py createsuperuser
    ```
 
 6. Start the development server:
 
    ```bash
-   uv run python manage.py runserver
+   uv run python backend/manage.py runserver
    ```
 
    Or with [just](https://github.com/casey/just): `just install`, `just migrate`, `just run`.

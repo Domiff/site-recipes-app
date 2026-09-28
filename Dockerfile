@@ -14,7 +14,7 @@ ENV UV_COMPILE_BYTECODE=1 \
 COPY pyproject.toml uv.lock ./
 RUN uv sync --frozen --no-install-project --no-dev
 
-COPY . .
+COPY backend/ ./
 
 FROM python:3.13-slim AS runtime
 
